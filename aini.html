@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Dog Zhang & Pig Yuan</title>
+  <link rel="shortcut icon" href="img/yuan.jpg">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <h3 align='center' style="font-family:Simsun"><span style="font-family:consolas">PDF</span>去分栏<code>\n</code>工具</h3>
+    <textarea class="form-control" rows="10" id="textarea" placeholder="袁宝宝，请输入想处理的PDF段落，🐕😘🐖💪"></textarea>
+    <button type="button" class="btn btn-primary" id="button" name="button" onclick="clk()">处理</button>
+    <div id="rst"></div>
+	<div id="cop"></div>
+	<div id="toastId2" class="toasttj2" style="display: none; opacity: 0;"></div>
+  </div>
+  <script type="text/javascript">
+    function clk() {
+      input = document.getElementById('textarea').value;
+      document.getElementById('rst').innerHTML = removeLine(input);
+      document.getElementById('cop').innerHTML = '<a class="copyname" onclick="copy()">一键复制</a>';
+    }
+    function removeLine(input) {
+      rst = '';
+      for (var i = 0; i < input.length; i++) {
+        if (input[i] == '\n') continue;
+        else rst += input[i];
+      }
+      return rst
+    }
+    
+			function $S(s){return document.getElementById(s);}
+			function $html(s,html){$S(s).innerHTML=html;}
+			var toastTime2=null;
+			var displayTime2=null;
+			function setToast3(html){
+				if(toastTime2!=null){
+					clearTimeout(toastTime2);
+					clearTimeout(displayTime2);
+				}
+				$S('toastId2').style.display='block';
+				$S('toastId2').style.opacity=1;
+				$html('toastId2',html);
+				toastTime2=setTimeout(function(){
+					$S('toastId2').style.opacity=0;
+					displayTime2=setTimeout(function(){$S('toastId2').style.display='none';},1500);
+				},1500);
+			}
+	function copy() {
+			var val = document.getElementById('rst');
+			window.getSelection().selectAllChildren(val);
+			document.execCommand("Copy");
+			setToast3('<div style="color:#fff;background: rgba(0, 0, 0, 0.6);border-radius: 3px;padding: 3px;text-align: center;width:300px;margin: 0 auto;">袁宝宝，快去学习！！！💪💪💪爱你😘</div>');
+			//alert("袁宝宝，快去学习！！！💪💪💪爱你😘");
+		}
+	</script>
+</body>
+</html>
